@@ -14,8 +14,8 @@ What This Tool Does
 * Accepts an IO Excel file (.xlsx or .xls)
 * Parses schedule line items, ignoring non-billable rows (e.g. Property = Ampersand)
 * Automatically classifies each line as:
-** Spectrum
-** Effectv
+  Spectrum
+  Effectv
 
 * Splits the IO into multiple outputs if more than one order type is present
 
