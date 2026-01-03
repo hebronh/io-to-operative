@@ -7,8 +7,7 @@ The goal is to:
 * Reduce manual setup time in Operative
 * Prevent ingest errors caused by formatting inconsistencies
 * Ensure outputs exactly match Operative’s required templates (values, dates, quantities, formatting)
-
-Support multi-order IOs by generating multiple Operative files when needed
+* Support multi-order IOs by generating multiple Operative files when needed
 
 What This Tool Does
 
@@ -26,7 +25,7 @@ What This Tool Does
 
 Operative is extremely strict — formatting must match exactly. This tool aims to preserve template structure and replaces only the relevant data.
 
-Supported Templates
+## Supported Templates
 
 Templates are stored in (provided by Political Team):
 
@@ -84,7 +83,7 @@ The tool will:
 Downloaded files are ready for Operative ingestion
 
 # Project Structure (High Level) 
-''
+
  src/
 ├── App.tsx
 │   └─ Application entry point.
@@ -114,7 +113,7 @@ public/
     │
     └── operative-effectv-template.xls
         └─ Exact Operative Effectv ingest template (unchanged formatting).
-'' 
+
 # Purpose
 
 Operative One is:
