@@ -82,7 +82,6 @@ The tool will:
 Downloaded files are ready for Operative ingestion
 
 # Project Structure (High Level) 
-````md
 ```text
 src/
 ├── App.tsx
