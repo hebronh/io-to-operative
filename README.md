@@ -111,7 +111,7 @@ public/
     │   └─ Exact Operative Spectrum ingest template (unchanged formatting).
 │
     └── operative-effectv-template.xls
-        └─ Exact Operative Effectv ingest template (unchanged formatting).
+        └─ Exact Operative Effectv ingest template (unchanged format).
 
 # Purpose
 
