@@ -83,7 +83,7 @@ Downloaded files are ready for Operative ingestion
 
 # Project Structure (High Level) 
 
- src/
+src/
 ├── App.tsx
 │   └─ Application entry point.
 │      Handles file upload, template selection, and export orchestration.
@@ -109,7 +109,7 @@ public/
 └── templates/
     ├── operative-spectrum-template.xls
     │   └─ Exact Operative Spectrum ingest template (unchanged formatting).
-    │
+│
     └── operative-effectv-template.xls
         └─ Exact Operative Effectv ingest template (unchanged formatting).
 
