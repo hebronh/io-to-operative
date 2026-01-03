@@ -10,22 +10,19 @@ The goal is to:
 
 Support multi-order IOs by generating multiple Operative files when needed
 
-# What This Tool Does
+What This Tool Does
 
-Accepts an IO Excel file (.xlsx or .xls)
+* Accepts an IO Excel file (.xlsx or .xls)
+* Parses schedule line items, ignoring non-billable rows (e.g. Property = Ampersand)
+* Automatically classifies each line as:
+** Spectrum
+** Effectv
 
-Parses schedule line items, ignoring non-billable rows (e.g. Property = Ampersand)
+* Splits the IO into multiple outputs if more than one order type is present
 
-Automatically classifies each line as:
+* Fills the correct Operative template for each order type
 
-Spectrum
-Effectv
-
-Splits the IO into multiple outputs if more than one order type is present
-
-Fills the correct Operative template for each order type
-
-Outputs .xls files that are ingestible directly into Operative
+* Outputs .xls files that are ingestible directly into Operative
 
 Operative is extremely strict — formatting must match exactly. This tool aims to preserve template structure and replaces only the relevant data.
 
@@ -68,7 +65,7 @@ npm install
 2. Start the dev server
 npm run dev
 
-The app runs locally via Vite.
+(The app runs locally via Vite.) 
 
 3. Use the app
 
@@ -87,7 +84,7 @@ The tool will:
 Downloaded files are ready for Operative ingestion
 
 # Project Structure (High Level) 
-
+''
  src/
 ├── App.tsx
 │   └─ Application entry point.
@@ -117,7 +114,7 @@ public/
     │
     └── operative-effectv-template.xls
         └─ Exact Operative Effectv ingest template (unchanged formatting).
-
+'' 
 # Purpose
 
 Operative One is:
