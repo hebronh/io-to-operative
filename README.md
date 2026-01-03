@@ -20,7 +20,7 @@ What This Tool Does
 
 * Fills the correct Operative template for each order type
 
-* Outputs .xls files that are ingestible directly into Operative
+* Outputs .xls files that are ingestible directly into Operative (import order feature)
 
 Operative is extremely strict — formatting must match exactly. This tool aims to preserve template structure and replaces only the relevant data.
 
@@ -85,33 +85,33 @@ Downloaded files are ready for Operative ingestion
 
 src/
 ├── App.tsx
-│   └─ Application entry point.
-│      Handles file upload, template selection, and export orchestration.
+│   └── Application entry point.
+│       Handles file upload, template selection, and export orchestration.
 │
 ├── converters/
 │   ├── parseSourceIo.ts
-│   │   └─ Parses raw IO Excel files and normalizes line data
-│   │      (markets, dates, net, imps, targeting, order type).
+│   │   └── Parses raw IO Excel files and normalizes line data
+│   │       (markets, dates, net, imps, targeting, order type).
 │   │
 │   ├── fillTemplate.ts
-│   │   └─ Fills Operative Excel templates with normalized IO data
-│   │      while preserving formatting and ingestion requirements.
+│   │   └── Fills Operative Excel templates with normalized IO data
+│   │       while preserving formatting and ingestion requirements.
 │   │
 │   └── types.ts
-│       └─ Shared TypeScript types used across parsing and filling logic.
+│       └── Shared TypeScript types used across parsing and filling logic.
 │
 ├── templates/
 │   └── templateConfig.ts
-│       └─ Maps OrderType (Spectrum, Effectv, etc.)
-│          to the correct Operative template and sheet configuration.
+│       └── Maps OrderType (Spectrum, Effectv, etc.)
+│           to the correct Operative template and sheet configuration.
 │
 public/
 └── templates/
     ├── operative-spectrum-template.xls
-    │   └─ Exact Operative Spectrum ingest template (unchanged formatting).
-│
+    │   └── Exact Operative Spectrum ingest template (unchanged formatting).
+    │
     └── operative-effectv-template.xls
-        └─ Exact Operative Effectv ingest template (unchanged format).
+        └── Exact Operative Effectv ingest template (unchanged formatting).
 
 # Purpose
 
