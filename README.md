@@ -82,7 +82,7 @@ The tool will:
 Downloaded files are ready for Operative ingestion
 
 # Project Structure (High Level) 
-
+'''
 src/
 ├── App.tsx
 │   └── Application entry point.
@@ -112,7 +112,7 @@ public/
     │
     └── operative-effectv-template.xls
         └── Exact Operative Effectv ingest template (unchanged formatting).
-
+'''
 # Purpose
 
 Operative One is:
