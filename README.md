@@ -1,73 +1,121 @@
-# React + TypeScript + Vite
+# IO to Operative
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This tool converts media IO Excel files into Operative-ingestible Sales Order templates (currently limited to Spectrum and Effectv), eliminating manual data entry in Operative One.
 
-Currently, two official plugins are available:
+The goal is to:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Reduce manual setup time in Operative
+* Prevent ingest errors caused by formatting inconsistencies
+* Ensure outputs exactly match Operative’s required templates (values, dates, quantities, formatting)
 
-## React Compiler
+Support multi-order IOs by generating multiple Operative files when needed
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## What This Tool Does
 
-## Expanding the ESLint configuration
+Accepts an IO Excel file (.xlsx or .xls)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Parses schedule line items, ignoring non-billable rows (e.g. Property = Ampersand)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Automatically classifies each line as:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Spectrum
+Effectv
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Splits the IO into multiple outputs if more than one order type is present
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Fills the correct Operative template for each order type
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Outputs .xls files that are ingestible directly into Operative
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Operative is extremely strict — formatting must match exactly. This tool aims to preserve template structure and replaces only the relevant data.
+
+Supported Templates
+
+Templates are stored in (provided by Political Team):
+
+/public/templates/
+
+Currently supported:
+
+operative-spectrum-template.xls
+
+operative-effectv-template.xls
+
+Each template:
+
+Preserves original formatting and structure
+
+Has default values cleared/replaced with parsed IO data
+
+Outputs only valid Operative-approved values
+
+Key Rules / Logic
+
+Rows where Property === "Ampersand" are ignored
+
+Dates are written as MM/DD/YYYY strings (not JS Date objects)
+
+Output format is .xls, not .xlsx
+
+Quantity, Net Unit Cost, and Line Item Name must match Operative expectations exactly
+
+Line items retain correct row alignment and formatting from the template
+
+# How to Run Locally
+1. Install dependencies
+npm install
+
+2. Start the dev server
+npm run dev
+
+
+The app runs locally via Vite.
+
+3. Use the app
+
+Open the app in your browser
+
+Upload an IO Excel file (.xlsx or .xls)
+
+The tool will:
+
+Parse the IO
+
+Detect order types
+
+Generate one or more Operative .xls files
+
+Downloaded files are ready for Operative ingestion
+
+Project Structure (High Level)
+src/
+├── App.tsx                  # UI + orchestration
+├── converters/
+│   ├── parseSourceIo.ts     # IO parsing + normalization
+│   ├── fillTemplate.ts      # Template filling logic
+│   └── types.ts             # Shared types
+├── templates/
+│   └── templateConfig.ts    # OrderType → template mapping
+public/
+└── templates/
+    ├── operative-spectrum-template.xls
+    └── operative-effectv-template.xls
+
+Purpose
+
+Operative One is:
+
+Slow to configure manually
+
+Extremely sensitive to formatting errors
+
+Integrated with platforms like Datamax and AND
+
+This tool aims to:
+
+Standardizes ingest logic
+
+Prevents common ingest failures
+
+Saves significant manual effort for Ad Ops
+
