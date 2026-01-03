@@ -29,7 +29,7 @@ Outputs .xls files that are ingestible directly into Operative
 
 Operative is extremely strict — formatting must match exactly. This tool aims to preserve template structure and replaces only the relevant data.
 
-# Supported Templates
+Supported Templates
 
 Templates are stored in (provided by Political Team):
 
@@ -68,7 +68,7 @@ npm install
 2. Start the dev server
 npm run dev
 
-- The app runs locally via Vite.
+The app runs locally via Vite.
 
 3. Use the app
 
