@@ -10,7 +10,7 @@ The goal is to:
 
 Support multi-order IOs by generating multiple Operative files when needed
 
-## What This Tool Does
+# What This Tool Does
 
 Accepts an IO Excel file (.xlsx or .xls)
 
@@ -29,7 +29,7 @@ Outputs .xls files that are ingestible directly into Operative
 
 Operative is extremely strict — formatting must match exactly. This tool aims to preserve template structure and replaces only the relevant data.
 
-Supported Templates
+# Supported Templates
 
 Templates are stored in (provided by Political Team):
 
@@ -43,23 +43,23 @@ operative-effectv-template.xls
 
 Each template:
 
-Preserves original formatting and structure
+* Preserves original formatting and structure
 
-Has default values cleared/replaced with parsed IO data
+* Has default values cleared/replaced with parsed IO data
 
-Outputs only valid Operative-approved values
+* Outputs only valid Operative-approved values
 
 Key Rules / Logic
 
-Rows where Property === "Ampersand" are ignored
+* Rows where Property === "Ampersand" are ignored
 
-Dates are written as MM/DD/YYYY strings (not JS Date objects)
+* Dates are written as MM/DD/YYYY strings (not JS Date objects)
 
-Output format is .xls, not .xlsx
+* Output format is .xls, not .xlsx
 
-Quantity, Net Unit Cost, and Line Item Name must match Operative expectations exactly
+* Quantity, Net Unit Cost, and Line Item Name must match Operative expectations exactly
 
-Line items retain correct row alignment and formatting from the template
+* Line items retain correct row alignment and formatting from the template
 
 # How to Run Locally
 1. Install dependencies
@@ -68,8 +68,7 @@ npm install
 2. Start the dev server
 npm run dev
 
-
-The app runs locally via Vite.
+- The app runs locally via Vite.
 
 3. Use the app
 
@@ -79,43 +78,61 @@ Upload an IO Excel file (.xlsx or .xls)
 
 The tool will:
 
-Parse the IO
+* Parse the IO
 
-Detect order types
+* Detect order types
 
-Generate one or more Operative .xls files
+* Generate one or more Operative .xls files
 
 Downloaded files are ready for Operative ingestion
 
-Project Structure (High Level)
-src/
-├── App.tsx                  # UI + orchestration
+# Project Structure (High Level) 
+
+ src/
+├── App.tsx
+│   └─ Application entry point.
+│      Handles file upload, template selection, and export orchestration.
+│
 ├── converters/
-│   ├── parseSourceIo.ts     # IO parsing + normalization
-│   ├── fillTemplate.ts      # Template filling logic
-│   └── types.ts             # Shared types
+│   ├── parseSourceIo.ts
+│   │   └─ Parses raw IO Excel files and normalizes line data
+│   │      (markets, dates, net, imps, targeting, order type).
+│   │
+│   ├── fillTemplate.ts
+│   │   └─ Fills Operative Excel templates with normalized IO data
+│   │      while preserving formatting and ingestion requirements.
+│   │
+│   └── types.ts
+│       └─ Shared TypeScript types used across parsing and filling logic.
+│
 ├── templates/
-│   └── templateConfig.ts    # OrderType → template mapping
+│   └── templateConfig.ts
+│       └─ Maps OrderType (Spectrum, Effectv, etc.)
+│          to the correct Operative template and sheet configuration.
+│
 public/
 └── templates/
     ├── operative-spectrum-template.xls
+    │   └─ Exact Operative Spectrum ingest template (unchanged formatting).
+    │
     └── operative-effectv-template.xls
+        └─ Exact Operative Effectv ingest template (unchanged formatting).
 
-Purpose
+# Purpose
 
 Operative One is:
 
-Slow to configure manually
+* Slow to configure manually
 
-Extremely sensitive to formatting errors
+* Extremely sensitive to formatting errors
 
-Integrated with platforms like Datamax and AND
+* Integrated with platforms like Datamax and AND
 
 This tool aims to:
 
-Standardizes ingest logic
+* Standardize ingest logic
 
-Prevents common ingest failures
+* Prevents common ingest failures
 
-Saves significant manual effort for Ad Ops
+* Saves significant manual effort for Ad Ops
 
